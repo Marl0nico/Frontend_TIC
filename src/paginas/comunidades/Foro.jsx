@@ -290,7 +290,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
     <div className="flex flex-col h-screen bg-[#313338] text-gray-100">
       <form
         onSubmit={handleCrearPublicacion}
-        className="mt-4 mx-5 p-4 bg-gray-800 rounded-2xl shadow-lg flex flex-col md:flex-row md:items-start gap-4"
+        className="sticky top-0 z-10 mt-4 mx-5 p-4 bg-gray-800 rounded-2xl shadow-lg flex flex-col md:flex-row md:items-start gap-4"
       >
         <textarea
           value={textoPublicacion}
@@ -356,7 +356,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
       </form>
 
       {/* Listado de publicaciones */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 mt-4">
         {publicaciones.map((pub) => (
           <div key={pub._id} className="border p-3 rounded bg-gray-800">
             <div className="flex justify-between items-start">
@@ -489,7 +489,10 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="bg-gray-800 text-gray-100">
-                              <DropdownMenuItem onClick={() => setEditingId(message.id)}>
+                              <DropdownMenuItem onClick={() => {
+                                setEditingId(message.id);
+                                setEditText(message.content);
+                              }}>
                                 <Pencil className="w-4 h-4 mr-2" /> Edit
                               </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => handleDelete(message.id)}>
