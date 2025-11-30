@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -8,6 +8,7 @@ export const PerfilEstudiante = () => {
   const { id } = useParams(); // Obtener el ID del estudiante de la URL
   const [estudiante, setEstudiante] = useState(null); // Estado para guardar los datos del estudiante
   const {token} = useAuthStore()
+  const navigate = useNavigate();
   const consultarEstudiante = useCallback(async () => {
     try {
       const url = `${import.meta.env.VITE_BACKEND_URL}/estudiante/${id}`;
@@ -39,6 +40,12 @@ export const PerfilEstudiante = () => {
                     flex flex-col items-start justify-between shadow-xl rounded-lg min-w-[300px] flex-grow max-w-full">
 
       <div className="self-start mb-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-3 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg shadow-md transition"
+        >
+          Volver
+        </button>
         <img 
           src={estudiante.fotoPerfil?.url || "https://cdn-icons-png.flaticon.com/512/4715/4715329.png"} 
           alt="img-client" 

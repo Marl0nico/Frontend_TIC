@@ -1,6 +1,7 @@
 import { THEMES } from "../Chat/constants";
 import { Send } from "lucide-react";
 import { useThemeStore } from "../Chat/store/useThemeStore";
+import { useNavigate } from "react-router-dom";
 
 const PREVIEW_MESSAGES = [
   { id: 1, content: "Hey! How's it going?", isSent: false },
@@ -13,9 +14,18 @@ const PREVIEW_MESSAGES = [
 
 const Configuracion = () => {
   const { theme, setTheme } = useThemeStore();
+  const navigate = useNavigate();
 
   return (
     <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
+      <div className="mb-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg shadow-md transition"
+        >
+          Volver
+        </button>
+      </div>
       <div className="space-y-6">
         <div className="flex flex-col gap-1">
           <h2 className="text-lg font-semibold">Theme</h2>

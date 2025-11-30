@@ -162,7 +162,9 @@ const FormularioPerfil = () => {
               placeholder="email"
               name="email"
               value={form.email}
-              onChange={handleChange}
+              readOnly
+              aria-readonly="true"
+              //onChange={handleChange}
             />
           </div>
 
@@ -224,7 +226,8 @@ const FormularioPerfil = () => {
               placeholder="ej: juan@gmail.com"
               name="email"
               value={form.email}
-              onChange={handleChange}
+              readOnly
+              aria-readonly="true"
             />
           </div>
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { MoreHorizontal, Reply, Trash2, Pencil } from "lucide-react";
 import { useAuthStore } from "../../Chat/store/useAuthStore";
@@ -361,7 +361,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
           <div key={pub._id} className="border p-3 rounded bg-gray-800">
             <div className="flex justify-between items-start">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-600">
+                <Link to={`/dashboard/perfil/${pub.autor?._id}`} className="w-10 h-10 rounded-full overflow-hidden bg-gray-600 inline-block">
                   <img
                     src={
                       pub.autor?.fotoPerfil?.url || pub.autor?.fotoPerfil || 
@@ -371,9 +371,11 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
                     alt={pub.autor?.usuario || pub.autor?.nombre || "Usuario"}
                     className="object-cover w-full h-full"
                   />
-                </div>
+                </Link>
                 <div>
-                  <div className="font-semibold text-gray-100">{pub.autor?.usuario || pub.autor?.nombre || "Usuario desconocido"}</div>
+                  <Link to={`/dashboard/perfil/${pub.autor?._id}`} className="font-semibold text-gray-100 hover:underline">
+                    {pub.autor?.usuario || pub.autor?.nombre || "Usuario desconocido"}
+                  </Link>
                   <div className="text-xs text-gray-400">{formatTimestamp(pub.fechaCreacion || pub.createdAt || pub.fechaCreacion)}</div>
                 </div>
               </div>
@@ -422,19 +424,19 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
                       className={`group relative ${indentClass}`}
                     >
                       <div className="flex items-start gap-4 group">
-                        <div className="avatar">
-                          <div className="w-10 h-10 rounded-full">
+                        <Link to={`/dashboard/perfil/${message.userId}`} className="avatar">
+                          <div className="w-10 h-10 rounded-full overflow-hidden">
                             <img
                               src={message.author.avatar || "/placeholder.svg"}
                               alt={message.author.name}
-                              className="object-cover"
+                              className="object-cover w-full h-full"
                             />
                           </div>
-                        </div>
+                        </Link>
 
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold">{message.author.name}</span>
+                            <Link to={`/dashboard/perfil/${message.userId}`} className="font-semibold text-gray-100 hover:underline">{message.author.name}</Link>
                             <span className="text-sm text-gray-400">{message.timestamp}</span>
                             {message.isNew && <div className="badge badge-info">NUEVO</div>}
                           </div>

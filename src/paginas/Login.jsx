@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Eye, EyeOff } from "lucide-react";
 
 import { useAuthStore } from "../Chat/store/useAuthStore";
 
@@ -13,6 +14,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
@@ -72,14 +75,24 @@ const Login = () => {
               <label className="mb-2 block text-sm font-semibold">
                 Password
               </label>
-              <input
-                name="password"
-                value={form.password || ""}
-                onChange={handleChange}
-                type="password"
-                placeholder="********************"
-                className="block w-full rounded-md border  focus:outline-none focus:ring-1 py-1 px-2 text-gray-500"
-              />
+              <div className="relative">
+                <input
+                  name="password"
+                  value={form.password || ""}
+                  onChange={handleChange}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="********************"
+                  className="block w-full rounded-md border focus:outline-none focus:ring-1 py-1 px-2 pr-10 text-gray-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
 
             <div className="my-4">
