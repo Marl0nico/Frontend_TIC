@@ -35,7 +35,7 @@ export const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/api/estudiante/registro`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/estudiante/registro`;
       const formData = new FormData();
 
       // Agregar los datos del formulario al FormData
@@ -55,8 +55,6 @@ export const Register = () => {
       });
 
       toast.success(respuesta.data.msg);
-      // Mostrar instrucción adicional
-      toast.success("Revisa tu correo electrónico para confirmar tu registro");
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data?.msg || "Error al registrar al estudiante");

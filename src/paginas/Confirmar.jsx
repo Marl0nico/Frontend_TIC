@@ -8,12 +8,12 @@ export const Confirmar = () => {
     const {token} = useParams()
     const verifyToken = async () =>{
         try {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/api/estudiante/confirmar/${token}`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/confirmar/${token}`
             const respuesta = await axios.get(url)
             toast.success(respuesta.data.msg)
         } catch (error) {
             console.error(error)
-            toast.error(error.response?.data?.msg || "Error al confirmar tu email")
+            toast.error(error.response.data.msg)
         }
     }
     

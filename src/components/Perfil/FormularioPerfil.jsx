@@ -164,7 +164,7 @@ const FormularioPerfil = () => {
               value={form.email}
               readOnly
               aria-readonly="true"
-              //onChange={handleChange}
+              
             />
           </div>
 
