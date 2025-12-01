@@ -398,7 +398,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
               <p className="text-gray-100">{pub.texto}</p>
 
               {pub.imagen?.url && (
-                <img style={{ width: "20rem", background: "black", padding: "2rem", borderRadius: "12px", border: "ridge" }} src={pub.imagen.url} alt="publicación" className="mt-2 max-w-full rounded" />
+                <img style={{ width: "20rem", background: "black", padding: "0.1rem", borderRadius: "12px", border: "ridge" }} src={pub.imagen.url} alt="publicación" className="mt-2 max-w-full rounded" />
               )}
             </div>
 
