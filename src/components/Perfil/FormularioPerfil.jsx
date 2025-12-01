@@ -263,7 +263,8 @@ const FormularioPerfil = () => {
               placeholder="ej: Ingeniería en Sistemas"
               name="carrera"
               value={form.carrera}
-              onChange={handleChange}
+              readOnly
+              aria-readonly="true"
             />
           </div>
           <div>

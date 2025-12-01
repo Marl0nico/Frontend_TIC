@@ -173,38 +173,38 @@ export const Register = () => {
                 <option value="">Seleccionar carrera</option>
 
                 <optgroup label="EPN - ESFOT">
-                  <option value="AguaSaneamiento">Tecnología Superior en Agua y Saneamiento Ambiental</option>
-                  <option value="RedesTelecomunicaciones">Tecnología Superior en Redes y Telecomunicaciones</option>
-                  <option value="DesarrolloSoftware">Tecnología Superior en Desarrollo de Software</option>
-                  <option value="Electromecanica">Tecnología Superior en Electromecánica</option>
-                  <option value="ProcesamientoAlimentos">Tecnología Superior en Procesamiento de Alimentos</option>
-                  <option value="ProcesamientoMadera">Tecnología Superior en Procesamiento Industrial de la Madera</option>
+                  <option value="Tecnología Superior en Agua y Saneamiento Ambiental">Tecnología Superior en Agua y Saneamiento Ambiental</option>
+                  <option value="Tecnología Superior en Redes y Telecomunicaciones">Tecnología Superior en Redes y Telecomunicaciones</option>
+                  <option value="Tecnología Superior en Desarrollo de Software">Tecnología Superior en Desarrollo de Software</option>
+                  <option value="Tecnología Superior en Electromecánica">Tecnología Superior en Electromecánica</option>
+                  <option value="Tecnología Superior en Procesamiento de Alimentos">Tecnología Superior en Procesamiento de Alimentos</option>
+                  <option value="Tecnología Superior en Procesamiento Industrial de la Madera">Tecnología Superior en Procesamiento Industrial de la Madera</option>
                 </optgroup>
                 <optgroup label="EPN">
-                  <option value="Civil">Ingeniería Civil</option>
-                  <option value="Sistemas">Ingeniería de Sistemas</option>
-                  <option value="Electronica">Ingeniería Electrónica</option>
-                  <option value="Mecanica">Ingeniería Mecánica</option>
-                  <option value="Ambiental">Ingeniería Ambiental</option>
-                  <option value="Industrial">Ingeniería Industrial</option>
+                  <option value="Ingeniería Civil">Ingeniería Civil</option>
+                  <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+                  <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
+                  <option value="Ingeniería Mecánica">Ingeniería Mecánica</option>
+                  <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
+                  <option value="Ingeniería Industrial">Ingeniería Industrial</option>
                 </optgroup>
 
                 <optgroup label="UPS">
-                  <option value="Software">Ingeniería de Software</option>
-                  <option value="ElectronicaUPS">Ingeniería Electrónica</option>
-                  <option value="IndustrialUPS">Ingeniería Industrial</option>
-                  <option value="ArquitecturaUPS">Arquitectura</option>
-                  <option value="Educacion">Ciencias de la Educación</option>
-                  <option value="Administracion">Administración de Empresas</option>
+                  <option value="Ingeniería de Software">Ingeniería de Software</option>
+                  <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
+                  <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                  <option value="Arquitectura">Arquitectura</option>
+                  <option value="Ciencias de la Educación">Ciencias de la Educación</option>
+                  <option value="Administración de Empresas">Administración de Empresas</option>
                 </optgroup>
 
                 <optgroup label="PUCE">
                   <option value="Medicina">Medicina</option>
                   <option value="Derecho">Derecho</option>
-                  <option value="Psicologia">Psicología</option>
-                  <option value="ArquitecturaPUCE">Arquitectura</option>
-                  <option value="SistemasPUCE">Ingeniería en Sistemas</option>
-                  <option value="Comunicacion">Comunicación Social</option>
+                  <option value="Psicología">Psicología</option>
+                  <option value="Arquitectura">Arquitectura</option>
+                  <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
+                  <option value="Comunicación Social">Comunicación Social</option>
                 </optgroup>
               </select>
             </div>
