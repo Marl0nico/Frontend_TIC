@@ -90,7 +90,7 @@ const Publicaciones = ({ token }) => {
       {selectedPublicacion && (
         <div className="mt-6">
           <h3 className="font-semibold mb-2">Comentarios</h3>
-          {/* Aquí se puede importar tu componente de comentarios */}
+          {}
         </div>
       )}
     </div>

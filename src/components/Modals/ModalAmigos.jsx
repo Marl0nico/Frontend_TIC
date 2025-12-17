@@ -56,7 +56,7 @@ function ModalAmigos() {
         text-slate-300 font-bold rounded-lg 
         hover:bg-blue-700 cursor-pointer transition-all"
         >
-          Friends
+          Amigos
         </button>
       </div>
 

@@ -79,7 +79,7 @@ const ChatContainer = () => {
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
-              {message.texto && <p>{message.texto}</p>}
+              {message.texto && <p className="text-white">{message.texto}</p>}
             </div>
           </div>
         ))}

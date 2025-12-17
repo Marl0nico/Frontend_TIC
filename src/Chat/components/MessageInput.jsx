@@ -76,8 +76,8 @@ const MessageInput = () => {
           <div className="flex-1 flex gap-2">
             <input
               type="text"
-              className="w-full input input-bordered rounded-lg input-sm sm:input-md"
-              placeholder="Type a message..."
+              className="w-full input input-bordered rounded-lg input-sm sm:input-md bg-transparent text-white placeholder-gray-400"
+              placeholder="Escribe un mensaje..."
               value={text}
               onChange={(e) => setText(e.target.value)}
             />

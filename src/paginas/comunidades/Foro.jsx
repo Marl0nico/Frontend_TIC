@@ -37,7 +37,7 @@ const formatTimestamp = (dateString) => {
 };
 const ForoComunidad = () => {
   const { id } = useParams();
-  const { authUser, token } = useAuthStore();
+  const { authUser, token, socket } = useAuthStore();
   const [messages, setMessages] = useState([]);
   const [Pub, setPub] = useState([])
   const [editingId, setEditingId] = useState(null);
@@ -184,6 +184,111 @@ const ForoComunidad = () => {
     fetchData();
   }, [id, token]);
 
+  // 🔥 Escuchar nuevas publicaciones en tiempo real
+  useEffect(() => {
+    if (!socket || !socket.connected || !id) return;
+
+    console.log(`[SOCKET] Suscrito a eventos de publicación y comentarios en ${id}`);
+
+    const handleNewPublicacion = (nuevaPublicacion) => {
+      console.log("[SOCKET] Nueva publicación recibida:", nuevaPublicacion);
+      
+      // Agregar la nueva publicación al inicio de la lista
+      setPublicaciones((prevPublicaciones) => [
+        nuevaPublicacion,
+        ...prevPublicaciones,
+      ]);
+      
+      toast.success(`${nuevaPublicacion.autor?.usuario || "Un usuario"} hizo una nueva publicación`);
+    };
+
+    const handleDeletePublicacion = (data) => {
+      console.log("[SOCKET] Publicación eliminada:", data.publicacionId);
+      
+      // Eliminar la publicación de la lista
+      setPublicaciones((prevPublicaciones) =>
+        prevPublicaciones.filter((pub) => pub._id !== data.publicacionId)
+      );
+      
+      // Remover comentarios de esa publicación
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg.publicacionId !== data.publicacionId)
+      );
+    };
+
+    const handleNewComentario = (nuevoComentario) => {
+      console.log("[SOCKET] Nuevo comentario recibido:", nuevoComentario);
+      
+      // Agregar el nuevo comentario a la lista de mensajes
+      const newMessage = {
+        id: nuevoComentario._id,
+        content: nuevoComentario.contenido,
+        author: {
+          name: nuevoComentario.usuario?.usuario || "Usuario desconocido",
+          avatar: nuevoComentario.usuario?.fotoPerfil?.url || "/placeholder.svg",
+          color: "bg-blue-500",
+        },
+        replyTo: nuevoComentario.replyTo?._id || null,
+        timestamp: formatTimestamp(nuevoComentario.fecha_creacion || new Date()),
+        isNew: true,
+        userId: nuevoComentario.usuario?._id,
+        publicacionId: nuevoComentario.publicacionId,
+      };
+      
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      toast.success("Nuevo comentario en una publicación");
+    };
+
+    const handleDeleteComentario = (data) => {
+      console.log("[SOCKET] Comentario eliminado:", data.comentarioId);
+      
+      // Eliminar el comentario de la lista
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg.id !== data.comentarioId)
+      );
+    };
+
+    const handleUpdateComentario = (data) => {
+      console.log("[SOCKET] Comentario actualizado:", data._id);
+      
+      // Actualizar el comentario en la lista
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg.id === data._id 
+            ? {
+                ...msg,
+                content: data.contenido,
+                author: {
+                  ...msg.author,
+                  name: data.usuario?.usuario || msg.author.name,
+                  avatar: data.usuario?.fotoPerfil?.url || msg.author.avatar,
+                },
+              }
+            : msg
+        )
+      );
+      
+      //toast.success("Comentario actualizado");
+    };
+
+    // Suscribirse a los eventos
+    socket.on(`newPublicacion_${id}`, handleNewPublicacion);
+    socket.on(`deletePublicacion_${id}`, handleDeletePublicacion);
+    socket.on(`newComentario_${id}`, handleNewComentario);
+    socket.on(`deleteComentario_${id}`, handleDeleteComentario);
+    socket.on(`updateComentario_${id}`, handleUpdateComentario);
+
+    // Cleanup: desuscribirse cuando el componente se desmonta
+    return () => {
+      socket.off(`newPublicacion_${id}`, handleNewPublicacion);
+      socket.off(`deletePublicacion_${id}`, handleDeletePublicacion);
+      socket.off(`newComentario_${id}`, handleNewComentario);
+      socket.off(`deleteComentario_${id}`, handleDeleteComentario);
+      socket.off(`updateComentario_${id}`, handleUpdateComentario);
+      console.log(`[SOCKET] Desuscrito de eventos de publicación y comentarios`);
+    };
+  }, [socket, id]);
+
   // Cleanup preview URL when component unmounts or previewUrl changes
   useEffect(() => {
     return () => {
@@ -246,7 +351,10 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
 
     const response = await axios.put(
       `${import.meta.env.VITE_BACKEND_URL}/comentario/${id}`,
-      { contenido: nuevoContenido }
+      { contenido: nuevoContenido },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
     );
 
     //Autorefrescar: actualizar el estado local
@@ -262,7 +370,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
 
   } catch (error) {
     console.error("Error al actualizar comentario:", error);
-    toast.error("No se pudo actualizar el comentario");
+    toast.error(error.response?.data?.error || "No se pudo actualizar el comentario");
   }
 };
 
@@ -296,7 +404,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
           value={textoPublicacion}
           onChange={(e) => setTextoPublicacion(e.target.value)}
           placeholder="Escribe algo para la comunidad..."
-          className="flex-1 min-h-[100px] resize-none rounded-xl border border-gray-700 bg-gray-700 text-gray-100 placeholder-gray-400 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          className="flex-1 min-h-[100px] resize-none rounded-xl border border-gray-700 bg-gray-700 text-white placeholder-gray-400 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
 
         <div className="flex flex-col items-start gap-3 md:w-48">
@@ -355,7 +463,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
         </div>
       </form>
 
-      {/* Listado de publicaciones */}
+      {}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 mt-4">
         {publicaciones.map((pub) => (
           <div key={pub._id} className="border p-3 rounded bg-gray-800">
@@ -393,7 +501,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
               </DropdownMenu>
             </div>
 
-            {/* Texto e imagen de la publicación */}
+            {}
             <div className="mt-2">
               <p className="text-gray-100">{pub.texto}</p>
 
@@ -472,10 +580,12 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
                             </form>
                           ) : (
                             <p
-                              className="mt-1 cursor-pointer"
+                              className={`mt-1 text-white ${authUser._id === message.userId ? 'cursor-pointer hover:text-gray-300' : ''}`}
                               onClick={() => {
-                                setEditingId(message.id);
-                                setEditText(message.content); // inicializa input con el texto actual
+                                if (authUser._id === message.userId) {
+                                  setEditingId(message.id);
+                                  setEditText(message.content);
+                                }
                               }}
                             >
                               {message.content}
@@ -491,12 +601,14 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="bg-gray-800 text-gray-100">
-                              <DropdownMenuItem onClick={() => {
-                                setEditingId(message.id);
-                                setEditText(message.content);
-                              }}>
-                                <Pencil className="w-4 h-4 mr-2" /> Edit
-                              </DropdownMenuItem>
+                              {authUser._id === message.userId && (
+                                <DropdownMenuItem onClick={() => {
+                                  setEditingId(message.id);
+                                  setEditText(message.content);
+                                }}>
+                                  <Pencil className="w-4 h-4 mr-2" /> Edit
+                                </DropdownMenuItem>
+                              )}
                               <DropdownMenuItem onClick={() => handleDelete(message.id)}>
                                 <Trash2 className="w-4 h-4 mr-2" /> Delete
                               </DropdownMenuItem>
@@ -556,7 +668,7 @@ const handleUpdateCommentario = async (id, nuevoContenido) => {
                     setNewMessages({ ...newMessages, [pub._id]: e.target.value })
                   }
                   placeholder="Escribe tu comentario..."
-                  className="input input-bordered flex-1 bg-gray-600"
+                  className="input input-bordered flex-1 bg-gray-600 text-white"
                 />
                 <button type="submit" className="btn btn-primary">
                   Comentar

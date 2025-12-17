@@ -14,7 +14,7 @@ const Dashboard = () => {
     <div className="md:flex md:min-h-screen">
       <div className="md:w-1/5 bg-gray-800 px-5 py-4">
         <h2 className="text-4xl font-black text-center text-slate-200">
-          U CONNECT
+          U-CONNECT
         </h2>
 
         <img
