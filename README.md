@@ -21,7 +21,6 @@ Comunícate instantáneamente con otros estudiantes de tu universidad o particip
 - [React](https://react.dev/) - Biblioteca para construir interfaces de usuario.
 - [React Router](https://reactrouter.com/) - Navegación y gestión de rutas.
 - [Socket.io-client](https://socket.io/docs/v4/client-api/) - Comunicación en tiempo real con WebSockets.
-- ShadcnUI
 - DaisyUI
 - Lucide React
 ---
@@ -30,16 +29,21 @@ Comunícate instantáneamente con otros estudiantes de tu universidad o particip
 
 ### 🔧 Administración
 - CRUD de comunidades y estudiantes (solo para administradores).
-![image](https://github.com/user-attachments/assets/60e55a3d-5ea1-4255-9c73-88c7bf69f300)
+<img width="915" height="513" alt="image" src="https://github.com/user-attachments/assets/c2740c43-adf7-4e39-bdc8-c221003be495" />
+
 ### 👥 Estudiantes
 - Unirse a comunidades.
-![image](https://github.com/user-attachments/assets/057a2b35-4941-4f3a-a5b1-1534bf4cf93d)
+<img width="1903" height="966" alt="image" src="https://github.com/user-attachments/assets/37b398b2-177e-413c-93d8-ea20f1a5141f" />
+
 - Agregar amigos y chatear con ellos.
-![image](https://github.com/user-attachments/assets/ba54c7b5-af63-4359-b30c-2719772d1e3f)
+<img width="915" height="516" alt="image" src="https://github.com/user-attachments/assets/ad68194e-feff-4e1c-86bd-c61a24cd911a" />
+
 - Escribir comentarios en el foro de la comunidad.
-![image](https://github.com/user-attachments/assets/b84c2c6b-7e36-4564-9ccc-f1b8326bdace)
+<img width="915" height="514" alt="image" src="https://github.com/user-attachments/assets/52c3dbfb-70de-43fc-a6f1-b77a996e51ba" />
+
 - Actualizar perfil y contraseña.
-![image](https://github.com/user-attachments/assets/fbc29499-e63d-4e50-8e3d-6fdee5297452)
+<img width="915" height="515" alt="image" src="https://github.com/user-attachments/assets/64588e03-cce0-4574-b534-faa418f90858" />
+
 
 
 ---
