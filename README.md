@@ -52,7 +52,7 @@ Comunícate instantáneamente con otros estudiantes de tu universidad y particip
 
 ### 1️⃣ Clonar el repositorio
 ```sh
-git clone https://github.com/SolarSpectre/frontend-comunidades.git
+git clone  https://github.com/Marl0nico/Frontend_TIC.git
 ```
 
 ### 2️⃣ Instalar dependencias
