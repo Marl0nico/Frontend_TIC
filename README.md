@@ -2,17 +2,17 @@
 
 ## Tu Comunidad Universitaria Digital
 
-Conéctate con estudiantes de PUCE, Salesiana y EPN en tiempo real. Comparte experiencias, recursos y construye una red académica más fuerte.
+Conéctate con estudiantes de la PUCE, UPS y EPN en tiempo real. Comparte experiencias, recursos y construye una red académica más fuerte.
 
 ---
 
 ## 🚀 Características Principales
 
 ### 🔹 Chat en Tiempo Real
-Comunícate instantáneamente con otros estudiantes de tu universidad o participa en chats interuniversitarios.
+Comunícate instantáneamente con otros estudiantes de tu universidad y participa en chats interuniversitarios.
 
 ### 🤝 Comunidades Exclusivas
-Únete a grupos específicos de tu carrera o intereses, y conecta con estudiantes que comparten tus objetivos.
+Únete a grupos específicos de tu carrera o intereses y conecta con estudiantes que comparten tus objetivos.
 
 ---
 
@@ -53,7 +53,6 @@ Comunícate instantáneamente con otros estudiantes de tu universidad o particip
 ### 1️⃣ Clonar el repositorio
 ```sh
 git clone https://github.com/SolarSpectre/frontend-comunidades.git
-cd frontend-comunidades
 ```
 
 ### 2️⃣ Instalar dependencias
